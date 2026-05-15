@@ -1,0 +1,40 @@
+<view class="container {{state}}" bindtap="handleTap">
+
+  <!-- 背景色层（停止时切换分类颜色） -->
+  <view class="bg-overlay" style="background:{{bgColor}};opacity:{{bgOpacity}}"></view>
+
+  <!-- emoji 装饰层（停止时淡入） -->
+  <view class="emoji-layer" style="opacity:{{emojiOpacity}}">
+    <text class="emoji e1">{{emojis[0]}}</text>
+    <text class="emoji e2">{{emojis[1]}}</text>
+    <text class="emoji e3">{{emojis[2]}}</text>
+    <text class="emoji e4">{{emojis[3]}}</text>
+  </view>
+
+  <!-- 空数据 -->
+  <view wx:if="{{isEmpty}}" class="empty-wrap">
+    <text class="empty-text">暂无菜品，请前往后台添加</text>
+  </view>
+
+  <!-- 主体 -->
+  <view wx:else class="content">
+    <text class="label-top">今天吃什么？</text>
+
+    <view class="menu-wrap {{state}}">
+      <text class="menu-category" wx:if="{{currentCategory}}">{{currentCategory}}</text>
+      <text class="menu-name">{{currentMenu}}</text>
+    </view>
+
+    <text wx:if="{{state === 'stopped'}}" class="result-text">今天就吃这个！</text>
+
+    <text wx:if="{{state === 'running' || state === 'stopping'}}" class="hint-text">点击屏幕停止</text>
+    <text wx:if="{{state === 'stopped'}}" class="hint-text">再次点击重新选择</text>
+  </view>
+
+  <!-- 管理入口（固定在右下角，catchtap 阻止冒泡） -->
+  <view class="admin-btn" catchtap="goAdmin">
+    <text class="admin-icon">⚙</text>
+    <text class="admin-label">管理菜品</text>
+  </view>
+
+</view>

@@ -1,0 +1,124 @@
+.page { min-height: 100vh; background: #f5f6fa; padding-bottom: 40rpx; }
+
+/* ── 密码弹层 ── */
+.pwd-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+  display: flex; align-items: center; justify-content: center; z-index: 200;
+}
+.pwd-card {
+  background: #fff; border-radius: 20rpx; padding: 56rpx 48rpx;
+  width: 580rpx; max-width: 88vw; box-sizing: border-box;
+  box-shadow: 0 20rpx 60rpx rgba(0,0,0,0.25);
+}
+.pwd-title { display: block; font-size: 36rpx; font-weight: 700; color: #1a1a2e; margin-bottom: 12rpx; }
+.pwd-desc { display: block; font-size: 26rpx; color: #999; margin-bottom: 40rpx; }
+.pwd-input {
+  display: block; width: 100%; padding: 20rpx 24rpx; box-sizing: border-box;
+  border: 2rpx solid #ddd; border-radius: 10rpx; font-size: 30rpx; background: #fafafa;
+  letter-spacing: 4rpx;
+}
+.pwd-input.input-error { border-color: #e74c3c; }
+.pwd-error { display: block; font-size: 22rpx; color: #e74c3c; margin-top: 10rpx; }
+.pwd-footer { display: flex; justify-content: flex-end; gap: 20rpx; margin-top: 48rpx; }
+
+/* ── 工具栏 ── */
+.toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24rpx 28rpx; background: #fff;
+  border-bottom: 1rpx solid #eee; position: sticky; top: 0; z-index: 10;
+}
+.picker-btn {
+  font-size: 28rpx; color: #333;
+  background: #f0f1f5; padding: 10rpx 24rpx; border-radius: 8rpx;
+}
+.toolbar-right { display: flex; gap: 16rpx; align-items: center; }
+.btn-seed {
+  font-size: 24rpx; background: #8e44ad; color: #fff;
+  border: none; border-radius: 8rpx; padding: 0 24rpx; height: 60rpx; line-height: 60rpx;
+}
+.btn-add {
+  font-size: 24rpx; background: #27ae60; color: #fff;
+  border: none; border-radius: 8rpx; padding: 0 24rpx; height: 60rpx; line-height: 60rpx;
+}
+
+/* ── 数量 / 提示 ── */
+.count-bar { font-size: 24rpx; color: #999; padding: 16rpx 28rpx; }
+.tip { text-align: center; color: #aaa; font-size: 28rpx; padding: 80rpx 60rpx; line-height: 1.8; }
+
+/* ── 列表 ── */
+.list { height: calc(100vh - 200rpx); padding: 0 20rpx; }
+.item {
+  display: flex; align-items: center; justify-content: space-between;
+  background: #fff; border-radius: 12rpx; padding: 24rpx 28rpx;
+  margin-bottom: 16rpx; box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05);
+}
+.item-info { flex: 1; margin-right: 20rpx; }
+.item-name { font-size: 30rpx; font-weight: 600; color: #222; display: block; margin-bottom: 6rpx; }
+.item-cat {
+  font-size: 22rpx; color: #2980b9;
+  background: #e8f4fd; padding: 2rpx 14rpx; border-radius: 20rpx;
+}
+.item-actions { display: flex; align-items: center; gap: 16rpx; flex-shrink: 0; }
+
+/* ── 开关 ── */
+.toggle {
+  position: relative; width: 88rpx; height: 48rpx;
+  border-radius: 24rpx; background: #ddd; transition: background 0.3s; flex-shrink: 0;
+}
+.toggle.on { background: #27ae60; }
+.toggle-dot {
+  position: absolute; top: 6rpx; left: 6rpx;
+  width: 36rpx; height: 36rpx; border-radius: 50%;
+  background: #fff; transition: transform 0.3s;
+  box-shadow: 0 2rpx 4rpx rgba(0,0,0,0.2);
+}
+.toggle.on .toggle-dot { transform: translateX(40rpx); }
+
+/* ── 操作按钮 ── */
+.btn-edit {
+  font-size: 24rpx; color: #fff; background: #3498db;
+  padding: 8rpx 20rpx; border-radius: 8rpx;
+}
+.btn-del {
+  font-size: 24rpx; color: #fff; background: #e74c3c;
+  padding: 8rpx 20rpx; border-radius: 8rpx;
+}
+
+/* ── 弹层 ── */
+.overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+  display: flex; align-items: center; justify-content: center; z-index: 100;
+}
+.form-card {
+  background: #fff; border-radius: 20rpx; padding: 48rpx 40rpx;
+  width: 640rpx; max-width: 90vw; box-shadow: 0 20rpx 60rpx rgba(0,0,0,0.2);
+  box-sizing: border-box;
+}
+.form-title { font-size: 34rpx; font-weight: 700; color: #1a1a2e; margin-bottom: 36rpx; display: block; }
+.form-row { margin-bottom: 28rpx; }
+.form-row-inline { display: flex; align-items: center; gap: 20rpx; }
+.form-label { display: block; font-size: 26rpx; color: #555; margin-bottom: 10rpx; font-weight: 500; }
+.form-row-inline .form-label { margin-bottom: 0; }
+.form-input {
+  width: 100%; padding: 18rpx 24rpx;
+  border: 2rpx solid #ddd; border-radius: 10rpx;
+  font-size: 28rpx; background: #fafafa; box-sizing: border-box;
+  display: block;
+}
+.form-input.input-error { border-color: #e74c3c; }
+.form-error-text { font-size: 22rpx; color: #e74c3c; margin-top: 8rpx; display: block; }
+.picker-input {
+  padding: 18rpx 24rpx; border: 2rpx solid #ddd;
+  border-radius: 10rpx; font-size: 28rpx; color: #333; background: #fafafa;
+  box-sizing: border-box; width: 100%;
+}
+.toggle-label { font-size: 26rpx; color: #555; }
+.form-footer { display: flex; justify-content: flex-end; gap: 20rpx; margin-top: 40rpx; }
+.btn-cancel {
+  padding: 0 40rpx; background: #f0f1f5; color: #555;
+  border: none; border-radius: 10rpx; font-size: 28rpx; height: 72rpx; line-height: 72rpx;
+}
+.btn-save {
+  padding: 0 40rpx; background: #0f3460; color: #fff;
+  border: none; border-radius: 10rpx; font-size: 28rpx; height: 72rpx; line-height: 72rpx;
+}

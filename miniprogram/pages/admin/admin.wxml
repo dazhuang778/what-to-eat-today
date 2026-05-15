@@ -1,0 +1,82 @@
+<view class="page">
+
+  <!-- 密码验证弹层 -->
+  <view wx:if="{{locked}}" class="pwd-overlay">
+    <view class="pwd-card">
+      <text class="pwd-title">管理员验证</text>
+      <text class="pwd-desc">请输入管理密码</text>
+      <input class="pwd-input {{pwdError ? 'input-error' : ''}}" password placeholder="请输入密码" value="{{pwdInput}}" bindinput="onPwdInput" confirm-type="done" bindconfirm="submitPassword" />
+      <text wx:if="{{pwdError}}" class="pwd-error">{{pwdError}}</text>
+      <view class="pwd-footer">
+        <button class="btn-cancel" bindtap="cancelPassword">取消</button>
+        <button class="btn-save" bindtap="submitPassword">确认</button>
+      </view>
+    </view>
+  </view>
+
+  <!-- 工具栏 -->
+  <view class="toolbar">
+    <picker range="{{['全部分类', '家常菜', '川湘菜', '面食/米粉', '外卖快餐', '汤类', '火锅烧烤', '粤菜']}}" value="{{filterIndex}}" bindchange="onFilterChange">
+      <view class="picker-btn">{{filterCategory || '全部分类'}} ▾</view>
+    </picker>
+    <view class="toolbar-right">
+      <button class="btn-seed" bindtap="seedData" disabled="{{seeding}}">{{seeding ? '导入中...' : '初始化数据'}}</button>
+      <button class="btn-add" bindtap="openAdd">+ 新增</button>
+    </view>
+  </view>
+
+  <view class="count-bar">共 {{menus.length}} 道菜</view>
+
+  <view wx:if="{{loading}}" class="tip">加载中...</view>
+  <view wx:elif="{{!menus.length}}" class="tip">暂无菜品，点「初始化数据」导入100条，或点「+ 新增」手动添加</view>
+
+  <scroll-view wx:else scroll-y class="list">
+    <view wx:for="{{menus}}" wx:key="_id" class="item">
+      <view class="item-info">
+        <text class="item-name">{{item.name}}</text>
+        <text class="item-cat">{{item.category}}</text>
+      </view>
+      <view class="item-actions">
+        <view class="toggle {{item.enabled ? 'on' : ''}}" bindtap="toggleEnabled" data-id="{{item._id}}" data-enabled="{{item.enabled}}">
+          <view class="toggle-dot"></view>
+        </view>
+        <text class="btn-edit" bindtap="openEdit" data-item="{{item}}">编辑</text>
+        <text class="btn-del" bindtap="deleteItem" data-id="{{item._id}}" data-name="{{item.name}}">删除</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 新增/编辑弹层 -->
+  <view wx:if="{{showForm}}" class="overlay" bindtap="closeForm">
+    <view class="form-card" catchtap="noop">
+      <text class="form-title">{{formTitle}}</text>
+
+      <view class="form-row">
+        <text class="form-label">菜品名称</text>
+        <input class="form-input {{formError ? 'input-error' : ''}}" value="{{form.name}}" placeholder="请输入菜品名称" bindinput="onNameInput" />
+        <text wx:if="{{formError}}" class="form-error-text">{{formError}}</text>
+      </view>
+
+      <view class="form-row">
+        <text class="form-label">分类</text>
+        <picker range="{{categories}}" value="{{categoryIndex}}" bindchange="onCategoryChange">
+          <view class="picker-input">{{form.category}} ▾</view>
+        </picker>
+      </view>
+
+      <view class="form-row form-row-inline">
+        <text class="form-label">参与抽选</text>
+        <view class="toggle {{form.enabled ? 'on' : ''}}" bindtap="toggleFormEnabled">
+          <view class="toggle-dot"></view>
+        </view>
+        <text class="toggle-label">{{form.enabled ? '启用' : '禁用'}}</text>
+      </view>
+
+      <view class="form-footer">
+        <button class="btn-cancel" bindtap="closeForm">取消</button>
+        <button class="btn-save" bindtap="saveForm">保存</button>
+      </view>
+    </view>
+  </view>
+
+</view>
